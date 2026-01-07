@@ -66,13 +66,12 @@
             flex-direction: column;
             align-items: center;
         }
-        /* ОБНОВЛЁННОЕ ПОЛЕ - пиксельное как в оригинале */
         .field {
             display: inline-grid;
             gap: 1px;
-            background: #7f7f7f; /* СЕРЫЙ фон как в Windows */
+            background: #7f7f7f;
             padding: 8px;
-            border: 4px outset #a0a0a0; /* Классическая 3D граница */
+            border: 4px outset #a0a0a0;
             margin: 0 auto;
         }
         .cell {
@@ -81,20 +80,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #c0c0c0; /* СЕРЫЙ фон */
-            border: 3px outset #efefef; /* 3D эффект выпуклой кнопки */
+            background: #c0c0c0;
+            border: 3px outset #efefef;
             font-weight: bold;
             cursor: pointer;
             user-select: none;
-            font-size: 16px; /* УВЕЛИЧЕННЫЙ шрифт */
+            font-size: 16px;
             font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
         }
         .cell:active {
-            border: 3px inset #c0c0c0; /* Вдавленный эффект при нажатии */
+            border: 3px inset #c0c0c0;
         }
         .cell.revealed {
-            border: none; /* Плоская серая граница */
-            background: #c0c0c0; /* Остаётся серым */
+            border: none;
+            background: #c0c0c0;
         }
         .cell.mine.revealed {
             background: #ff0000;
@@ -111,23 +110,21 @@
         .cell.highlight-flag {
             background: #ffcccc !important;
         }
-        /* ХАОТИЧНЫЕ СЛУЧАЙНЫЕ ЦВЕТА ДЛЯ ЦИФР */
-        .cell.number-1 { color: #FF6B35; } /* оранжевый */
-        .cell.number-2 { color: #58508D; } /* фиолетовый */
-        .cell.number-3 { color: #00A896; } /* бирюзовый */
-        .cell.number-4 { color: #F4A261; } /* персиковый */
-        .cell.number-5 { color: #2A9D8F; } /* зелёно-голубой */
-        .cell.number-6 { color: #E76F51; } /* коралловый */
-        .cell.number-7 { color: #264653; } /* тёмно-синий */
-        .cell.number-8 { color: #E9C46A; } /* жёлтый */
+        .cell.number-1 { color: #FF6B35; }
+        .cell.number-2 { color: #58508D; }
+        .cell.number-3 { color: #00A896; }
+        .cell.number-4 { color: #F4A261; }
+        .cell.number-5 { color: #2A9D8F; }
+        .cell.number-6 { color: #E76F51; }
+        .cell.number-7 { color: #264653; }
+        .cell.number-8 { color: #E9C46A; }
         
-        /* СТИЛИ БОССА */
         .boss-mode .field {
-            background: #800020 !important; /* Бордовый фон поля */
+            background: #800020 !important;
             border-color: #660000 !important;
         }
         .boss-mode .cell {
-            background: #a04040 !important; /* Бордовые клетки */
+            background: #a04040 !important;
             border-color: #8b0000 !important;
         }
         .boss-mode .cell.revealed {
@@ -219,11 +216,9 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 13px;
-            transition: background 0.2s;
         }
         .mode-btn.active {
             background: #007bff;
-            box-shadow: 0 2px 8px rgba(0,123,255,0.3);
         }
         .action-buttons {
             display: flex;
@@ -238,10 +233,6 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
-        }
-        .action-btn:hover {
-            background: #555;
         }
         .seed-input {
             background: #222;
@@ -283,13 +274,9 @@
 <body>
     <div class="container">
         <div class="game-header">
-            <div class="mines-counter">
-                雷: <span id="remainingMines">十</span>
-            </div>
+            <div class="mines-counter">雷: <span id="remainingMines">十</span></div>
             <button class="smiley-btn" onclick="startNewGame()">🇨🇳</button>
-            <div class="timer">
-                时: <span id="gameTimer">〇</span>
-            </div>
+            <div class="timer">时: <span id="gameTimer">〇</span></div>
         </div>
 
         <div class="game-area">
@@ -305,30 +292,21 @@
 
         <div class="game-controls">
             <div class="control-group">
-                <label>宽度:</label>
-                <input type="number" id="width" value="9" min="5" max="15">
-                
-                <label>高度:</label>
-                <input type="number" id="height" value="9" min="5" max="15">
+                <label>宽度:</label><input type="number" id="width" value="9" min="5" max="15">
+                <label>高度:</label><input type="number" id="height" value="9" min="5" max="15">
             </div>
-            
             <div class="control-group">
-                <label>地雷数:</label>
-                <input type="number" id="mines" value="10" min="1" max="30">
+                <label>地雷数:</label><input type="number" id="mines" value="10" min="1" max="30">
             </div>
-
             <div class="mode-buttons">
                 <button class="mode-btn active" onclick="setMode('reveal')">点击模式</button>
                 <button class="mode-btn" onclick="setMode('flag')">标记模式</button>
             </div>
-
             <div class="action-buttons">
                 <button class="action-btn" onclick="startNewGame()">新游戏</button>
                 <button class="action-btn" onclick="generateWithSeed()">种子游戏</button>
             </div>
-
             <input type="text" id="customSeed" class="seed-input" placeholder="输入种子号">
-
             <div class="game-info">
                 <div>已开: <span id="revealedCells">〇</span>/<span id="totalCells">八十一</span></div>
                 <div>种子: <span class="seed-info" id="currentSeed">-</span></div>
@@ -343,48 +321,24 @@
     </div>
 
     <script>
-        // Функция для преобразования арабских цифр в китайские
         function toChineseNumber(num) {
-            const chineseNumbers = {
-                0: '〇',
-                1: '一',
-                2: '二', 
-                3: '三',
-                4: '四',
-                5: '五',
-                6: '六',
-                7: '七',
-                8: '八',
-                9: '九'
-            };
-            
-            // ВСЕГДА просто комбинация цифр
+            const chineseNumbers = {0:'〇',1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九'};
             return num.toString().split('').map(digit => chineseNumbers[digit]).join('');
         }
 
         // ==================== СИСТЕМА БОССА ====================
         let totalWins = 0;
         let bossActive = false;
-        let bossInstance = null;
         let bossCells = new Set();
         let bossMoving = false;
         let bossCheckTimeout = null;
 
-        const BOSS_CHANCES = {
-            5: 0.15,   // 15%
-            10: 0.30,  // 30%
-            20: 0.40,  // 40%
-            30: 0.50,  // 50%
-            40: 0.60,  // 60%
-            50: 0.70   // 70%
-        };
+        const BOSS_CHANCES = {5:0.15,10:0.30,20:0.40,30:0.50,40:0.60,50:0.70};
 
         function getBossChance() {
             let maxChance = 0;
             for (const [wins, chance] of Object.entries(BOSS_CHANCES)) {
-                if (totalWins >= parseInt(wins) && chance > maxChance) {
-                    maxChance = chance;
-                }
+                if (totalWins >= parseInt(wins) && chance > maxChance) maxChance = chance;
             }
             return maxChance;
         }
@@ -402,177 +356,108 @@
         function activateBossMode() {
             bossActive = true;
             document.body.classList.add('boss-mode');
-            
-            // Устанавливаем параметры босса
             document.getElementById('width').value = 30;
             document.getElementById('height').value = 30;
             document.getElementById('mines').value = 300;
-            
-            // Случайный seed для босса
             const bossSeed = Math.floor(Math.random() * 1000000000);
             document.getElementById('customSeed').value = bossSeed;
-            
-            // Запускаем игру
             generateWithSeed();
-            
-            // Создаём босса через секунду
             setTimeout(createBoss, 1000);
         }
 
         function createBoss() {
             bossCells.clear();
-            const centerX = 15;
-            const centerY = 15;
-            
-            // Создаём куб 9x9
+            const centerX = 15, centerY = 15;
             for (let y = centerY - 4; y <= centerY + 4; y++) {
                 for (let x = centerX - 4; x <= centerX + 4; x++) {
-                    if (x >= 0 && x < 30 && y >= 0 && y < 30) {
-                        bossCells.add(`${x},${y}`);
-                    }
+                    if (x >= 0 && x < 30 && y >= 0 && y < 30) bossCells.add(`${x},${y}`);
                 }
             }
-            
-            // Помечаем клетки босса
             updateBossDisplay();
-            
-            // Запускаем движение босса
             startBossMovement();
         }
 
         function updateBossDisplay() {
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => {
-                const x = parseInt(cell.dataset.x);
-                const y = parseInt(cell.dataset.y);
+            document.querySelectorAll('.cell').forEach(cell => {
+                const x = parseInt(cell.dataset.x), y = parseInt(cell.dataset.y);
                 const key = `${x},${y}`;
-                
                 if (bossCells.has(key)) {
-                    cell.classList.add('boss-cell');
-                    cell.classList.add('boss-flashing');
+                    cell.classList.add('boss-cell', 'boss-flashing');
                 } else {
-                    cell.classList.remove('boss-cell');
-                    cell.classList.remove('boss-flashing');
+                    cell.classList.remove('boss-cell', 'boss-flashing');
                 }
             });
         }
 
         function startBossMovement() {
             if (!bossActive) return;
-            
             bossMoving = true;
             moveBoss();
-            
-            // Движение каждые 3 секунды
-            setInterval(() => {
-                if (bossActive && bossMoving) {
-                    moveBoss();
-                }
-            }, 3000);
+            setInterval(() => bossActive && bossMoving && moveBoss(), 3000);
         }
 
         function moveBoss() {
-            // Случайное движение
-            const dx = Math.floor(Math.random() * 61) - 30; // -30 до +30
+            const dx = Math.floor(Math.random() * 61) - 30;
             const dy = Math.floor(Math.random() * 61) - 30;
-            
             const newBossCells = new Set();
             bossCells.forEach(cellKey => {
                 const [x, y] = cellKey.split(',').map(Number);
-                let newX = x + dx;
-                let newY = y + dy;
-                
-                // Ограничиваем границами поля
-                newX = Math.max(0, Math.min(29, newX));
-                newY = Math.max(0, Math.min(29, newY));
-                
+                let newX = Math.max(0, Math.min(29, x + dx));
+                let newY = Math.max(0, Math.min(29, y + dy));
                 newBossCells.add(`${newX},${newY}`);
             });
-            
             bossCells = newBossCells;
             updateBossDisplay();
-            
-            // Стираем флажки под боссом
             clearFlagsUnderBoss();
         }
 
         function clearFlagsUnderBoss() {
-            bossCells.forEach(cellKey => {
-                game.flaggedPositions.delete(cellKey);
-            });
+            bossCells.forEach(cellKey => game.flaggedPositions.delete(cellKey));
             displayGame();
         }
 
         function handleBossClick(x, y) {
             if (!bossActive || bossCheckTimeout) return;
-            
             const key = `${x},${y}`;
             if (!bossCells.has(key)) return;
-            
-            // Начинаем проверку
-            bossCheckTimeout = setTimeout(() => {
-                checkBossVictory();
-            }, 3500);
-            
-            // Мигание босса
+            bossCheckTimeout = setTimeout(checkBossVictory, 3500);
             const bossCellsElements = document.querySelectorAll('.boss-cell');
             let flashCount = 0;
             const flashInterval = setInterval(() => {
                 bossCellsElements.forEach(cell => {
                     cell.style.backgroundColor = flashCount % 2 === 0 ? '#8b0000' : '#ff0000';
                 });
-                flashCount++;
-                if (flashCount > 6) {
-                    clearInterval(flashInterval);
-                }
+                if (++flashCount > 6) clearInterval(flashInterval);
             }, 500);
         }
 
         function checkBossVictory() {
             bossCheckTimeout = null;
-            
-            // Проверяем что все клетки - мины
             let allCellsAreMines = true;
             for (let y = 0; y < 30; y++) {
                 for (let x = 0; x < 30; x++) {
                     const key = `${x},${y}`;
                     const cellState = game.cellStates[key];
-                    
-                    if (!cellState || cellState !== 'revealed') {
-                        // Клетка закрыта - должна быть миной
-                        if (!bossCells.has(key)) {
-                            allCellsAreMines = false;
-                            break;
-                        }
+                    if ((!cellState || cellState !== 'revealed') && !bossCells.has(key)) {
+                        allCellsAreMines = false;
+                        break;
                     }
                 }
                 if (!allCellsAreMines) break;
             }
-            
-            if (allCellsAreMines) {
-                // ПОБЕДА - босс падает
-                bossVictory();
-            } else {
-                // ПОРАЖЕНИЕ - взрыв
-                bossDefeat();
-            }
+            allCellsAreMines ? bossVictory() : bossDefeat();
         }
 
         function bossVictory() {
-            bossActive = false;
-            bossMoving = false;
-            
-            // Анимация падения босса
+            bossActive = bossMoving = false;
             const bossCellsElements = document.querySelectorAll('.boss-cell');
             let fallDistance = 0;
-            
             const fallInterval = setInterval(() => {
                 fallDistance += 5;
                 bossCellsElements.forEach(cell => {
                     cell.style.transform = `translateY(${fallDistance}px)`;
                     cell.style.opacity = 1 - (fallDistance / 100);
                 });
-                
                 if (fallDistance > 100) {
                     clearInterval(fallInterval);
                     showGameOver(true);
@@ -581,28 +466,18 @@
         }
 
         function bossDefeat() {
-            bossActive = false;
-            bossMoving = false;
-            
-            // Анимация взрыва
-            const bossCellsElements = document.querySelectorAll('.boss-cell');
-            bossCellsElements.forEach(cell => {
+            bossActive = bossMoving = false;
+            document.querySelectorAll('.boss-cell').forEach(cell => {
                 cell.style.backgroundColor = '#ff0000';
                 cell.style.transform = 'scale(1.5)';
                 cell.style.transition = 'all 0.3s';
             });
-            
-            setTimeout(() => {
-                showGameOver(false);
-            }, 1000);
+            setTimeout(() => showGameOver(false), 1000);
         }
 
         function showGameOver(isVictory) {
-            const screen = document.getElementById('gameOverScreen');
-            const text = document.getElementById('gameOverText');
-            
-            text.textContent = isVictory ? '恭喜！你赢了！' : '游戏结束！你输了！';
-            screen.style.display = 'flex';
+            document.getElementById('gameOverText').textContent = isVictory ? '恭喜！你赢了！' : '游戏结束！你输了！';
+            document.getElementById('gameOverScreen').style.display = 'flex';
         }
 
         function restartGame() {
@@ -634,13 +509,12 @@
             }
             
             generateGame(seed = null) {
-                if (seed) {
-                    this.seed = seed;
-                } else {
-                    this.seed = this.generateUniqueSeed();
-                }
-                
-                this.setSeed(this.seed);
+                this.seed = seed || Date.now() + Math.floor(Math.random() * 1000000);
+                let x = Math.sin(this.seed) * 10000;
+                this.random = () => {
+                    x = Math.sin(x * 10000) * 10000;
+                    return x - Math.floor(x);
+                };
                 this.gameState = 'playing';
                 this.revealedCount = 0;
                 this.flaggedPositions.clear();
@@ -650,55 +524,24 @@
                 this.isChordPressed = false;
                 this.stopTimer();
                 this.startTime = null;
-                
-                const field = Array(this.height).fill().map(() => 
-                    Array(this.width).fill(0)
-                );
-                
-                return {
-                    field: field,
-                    seed: this.seed,
-                    width: this.width,
-                    height: this.height
-                };
-            }
-            
-            generateUniqueSeed() {
-                return Date.now() + Math.floor(Math.random() * 1000000);
-            }
-            
-            setSeed(seed) {
-                let x = Math.sin(seed) * 10000;
-                this.random = () => {
-                    x = Math.sin(x * 10000) * 10000;
-                    return x - Math.floor(x);
-                };
+                const field = Array(this.height).fill().map(() => Array(this.width).fill(0));
+                return {field: field, seed: this.seed, width: this.width, height: this.height};
             }
             
             placeMines(firstX, firstY, field) {
                 const minesPositions = [];
                 const totalCells = this.width * this.height;
-                
-                if (this.minesCount >= totalCells) {
-                    this.minesCount = totalCells - 1;
-                }
-                
+                if (this.minesCount >= totalCells) this.minesCount = totalCells - 1;
                 while (minesPositions.length < this.minesCount) {
                     const x = Math.floor(this.random() * this.width);
                     const y = Math.floor(this.random() * this.height);
-                    
-                    if ((x === firstX && y === firstY) || 
-                        Math.abs(x - firstX) <= 1 && Math.abs(y - firstY) <= 1) {
-                        continue;
-                    }
-                    
+                    if ((x === firstX && y === firstY) || Math.abs(x - firstX) <= 1 && Math.abs(y - firstY) <= 1) continue;
                     const position = `${x},${y}`;
                     if (!minesPositions.includes(position)) {
                         minesPositions.push(position);
                         field[y][x] = -1;
                     }
                 }
-                
                 this.updateNumbers(field, minesPositions);
                 return minesPositions;
             }
@@ -706,19 +549,11 @@
             updateNumbers(field, minesPositions) {
                 minesPositions.forEach(pos => {
                     const [x, y] = pos.split(',').map(Number);
-                    
                     for (let dx = -1; dx <= 1; dx++) {
                         for (let dy = -1; dy <= 1; dy++) {
                             if (dx === 0 && dy === 0) continue;
-                            
-                            const nx = x + dx;
-                            const ny = y + dy;
-                            
-                            if (nx >= 0 && nx < this.width && 
-                                ny >= 0 && ny < this.height && 
-                                field[ny][nx] !== -1) {
-                                field[ny][nx]++;
-                            }
+                            const nx = x + dx, ny = y + dy;
+                            if (nx >= 0 && nx < this.width && ny >= 0 && ny < this.height && field[ny][nx] !== -1) field[ny][nx]++;
                         }
                     }
                 });
@@ -727,28 +562,21 @@
             revealCell(x, y, field) {
                 if (this.gameState !== 'playing') return false;
                 if (this.flaggedPositions.has(`${x},${y}`)) return false;
-                
                 if (this.firstClick) {
                     this.placeMines(x, y, field);
                     this.firstClick = false;
                     this.startTimer();
                 }
-                
                 if (field[y][x] === -1) {
                     this.gameState = 'gameover';
                     this.stopTimer();
                     return true;
                 }
-                
                 if (!this.cellStates[`${x},${y}`]) {
                     this.cellStates[`${x},${y}`] = 'revealed';
                     this.revealedCount++;
-                    
-                    if (field[y][x] === 0) {
-                        this.revealEmptyArea(x, y, field);
-                    }
+                    if (field[y][x] === 0) this.revealEmptyArea(x, y, field);
                 }
-                
                 this.checkWinCondition(field);
                 return true;
             }
@@ -756,30 +584,20 @@
             revealEmptyArea(x, y, field) {
                 const queue = [[x, y]];
                 const visited = new Set();
-                
                 while (queue.length > 0) {
                     const [cx, cy] = queue.shift();
                     const key = `${cx},${cy}`;
-                    
-                    if (visited.has(key)) continue;
-                    if (this.flaggedPositions.has(key)) continue;
-                    
+                    if (visited.has(key) || this.flaggedPositions.has(key)) continue;
                     visited.add(key);
-                    
                     if (!this.cellStates[key]) {
                         this.cellStates[key] = 'revealed';
                         this.revealedCount++;
                     }
-                    
                     if (field[cy][cx] === 0) {
                         for (let dx = -1; dx <= 1; dx++) {
                             for (let dy = -1; dy <= 1; dy++) {
-                                const nx = cx + dx;
-                                const ny = cy + dy;
-                                
-                                if (nx >= 0 && nx < this.width && 
-                                    ny >= 0 && ny < this.height && 
-                                    !visited.has(`${nx},${ny}`)) {
+                                const nx = cx + dx, ny = cy + dy;
+                                if (nx >= 0 && nx < this.width && ny >= 0 && ny < this.height && !visited.has(`${nx},${ny}`)) {
                                     queue.push([nx, ny]);
                                 }
                             }
@@ -790,73 +608,47 @@
             
             handleCellClick(x, y) {
                 if (this.gameState !== 'playing') return;
-                
                 const key = `${x},${y}`;
-                
-                // Проверяем клик на босса
                 if (bossActive && bossCells.has(key)) {
                     handleBossClick(x, y);
                     return;
                 }
-                
                 if (this.currentMode === 'reveal') {
-                    if (!this.flaggedPositions.has(key)) {
-                        this.revealCell(x, y, gameData.field);
-                    }
-                } else if (this.currentMode === 'flag') {
-                    this.toggleFlag(x, y);
-                }
+                    if (!this.flaggedPositions.has(key)) this.revealCell(x, y, gameData.field);
+                } else if (this.currentMode === 'flag') this.toggleFlag(x, y);
             }
             
             toggleFlag(x, y) {
                 const key = `${x},${y}`;
-                
                 if (this.cellStates[key] === 'revealed') return;
-                
-                if (this.flaggedPositions.has(key)) {
-                    this.flaggedPositions.delete(key);
-                } else {
-                    this.flaggedPositions.add(key);
-                }
+                if (this.flaggedPositions.has(key)) this.flaggedPositions.delete(key);
+                else this.flaggedPositions.add(key);
             }
             
             chordClick(x, y) {
                 if (this.gameState !== 'playing') return;
                 if (this.cellStates[`${x},${y}`] !== 'revealed') return;
                 if (gameData.field[y][x] <= 0) return;
-                
                 const cellValue = gameData.field[y][x];
                 let flagCount = 0;
                 const cellsToReveal = [];
-                
                 for (let dx = -1; dx <= 1; dx++) {
                     for (let dy = -1; dy <= 1; dy++) {
                         if (dx === 0 && dy === 0) continue;
-                        
-                        const nx = x + dx;
-                        const ny = y + dy;
-                        
+                        const nx = x + dx, ny = y + dy;
                         if (nx >= 0 && nx < this.width && ny >= 0 && ny < this.height) {
                             const neighborKey = `${nx},${ny}`;
-                            if (this.flaggedPositions.has(neighborKey)) {
-                                flagCount++;
-                            } else if (!this.cellStates[neighborKey]) {
-                                cellsToReveal.push([nx, ny]);
-                            }
+                            if (this.flaggedPositions.has(neighborKey)) flagCount++;
+                            else if (!this.cellStates[neighborKey]) cellsToReveal.push([nx, ny]);
                         }
                     }
                 }
-                
                 if (flagCount === cellValue) {
                     let hitMine = false;
-                    
                     for (const [nx, ny] of cellsToReveal) {
-                        if (gameData.field[ny][nx] === -1) {
-                            hitMine = true;
-                        }
+                        if (gameData.field[ny][nx] === -1) hitMine = true;
                         this.revealCell(nx, ny, gameData.field);
                     }
-                    
                     if (hitMine) {
                         this.gameState = 'gameover';
                         this.stopTimer();
@@ -866,25 +658,16 @@
             
             highlightChordArea(x, y) {
                 this.highlightedCells.clear();
-                
                 if (this.cellStates[`${x},${y}`] === 'revealed' && gameData.field[y][x] > 0) {
                     for (let dx = -1; dx <= 1; dx++) {
                         for (let dy = -1; dy <= 1; dy++) {
                             if (dx === 0 && dy === 0) continue;
-                            
-                            const nx = x + dx;
-                            const ny = y + dy;
-                            
-                            if (nx >= 0 && nx < this.width && 
-                                ny >= 0 && ny < this.height) {
+                            const nx = x + dx, ny = y + dy;
+                            if (nx >= 0 && nx < this.width && ny >= 0 && ny < this.height) {
                                 const neighborKey = `${nx},${ny}`;
-                                
                                 if (!this.cellStates[neighborKey]) {
-                                    if (this.flaggedPositions.has(neighborKey)) {
-                                        this.highlightedCells.add(neighborKey + '-flag');
-                                    } else {
-                                        this.highlightedCells.add(neighborKey);
-                                    }
+                                    if (this.flaggedPositions.has(neighborKey)) this.highlightedCells.add(neighborKey + '-flag');
+                                    else this.highlightedCells.add(neighborKey);
                                 }
                             }
                         }
@@ -892,60 +675,32 @@
                 }
             }
             
-            clearHighlight() {
-                this.highlightedCells.clear();
-            }
+            clearHighlight() { this.highlightedCells.clear(); }
             
             checkWinCondition(field) {
                 const totalSafeCells = this.width * this.height - this.minesCount;
                 if (this.revealedCount === totalSafeCells) {
                     this.gameState = 'win';
                     this.stopTimer();
-                    
-                    // Увеличиваем счётчик побед
                     if (!bossActive) {
                         totalWins++;
                         updateBossInfo();
-                        
-                        // Проверяем появление босса
                         if (checkBossSpawn()) {
                             setTimeout(() => {
-                                if (confirm(`你赢了 ${totalWins} 次！BOSS 出现了！准备战斗吗？`)) {
-                                    activateBossMode();
-                                }
+                                if (confirm(`你赢了 ${totalWins} 次！BOSS 出现了！准备战斗吗？`)) activateBossMode();
                             }, 500);
                         }
                     }
                 }
             }
             
-            getRemainingMines() {
-                return this.minesCount - this.flaggedPositions.size;
-            }
-            
-            startTimer() {
-                this.startTime = Date.now();
-                this.timer = setInterval(updateTimer, 1000);
-            }
-            
-            stopTimer() {
-                if (this.timer) {
-                    clearInterval(this.timer);
-                    this.timer = null;
-                }
-            }
-            
-            getElapsedTime() {
-                if (!this.startTime) return 0;
-                return Math.floor((Date.now() - this.startTime) / 1000);
-            }
-            
-            setMode(mode) {
-                this.currentMode = mode;
-            }
+            getRemainingMines() { return this.minesCount - this.flaggedPositions.size; }
+            startTimer() { this.startTime = Date.now(); this.timer = setInterval(updateTimer, 1000); }
+            stopTimer() { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+            getElapsedTime() { return this.startTime ? Math.floor((Date.now() - this.startTime) / 1000) : 0; }
+            setMode(mode) { this.currentMode = mode; }
         }
 
-        let currentGame = null;
         let gameData = null;
         const game = new MinesweeperGame();
         let chordActive = false;
@@ -954,11 +709,9 @@
             const width = parseInt(document.getElementById('width').value) || 9;
             const height = parseInt(document.getElementById('height').value) || 9;
             const mines = parseInt(document.getElementById('mines').value) || 10;
-            
             game.width = width;
             game.height = height;
             game.minesCount = mines;
-            
             gameData = game.generateGame();
             displayGame();
             updateBossInfo();
@@ -966,19 +719,13 @@
 
         function generateWithSeed() {
             const seedInput = document.getElementById('customSeed').value;
-            if (!seedInput) {
-                alert('请输入种子号');
-                return;
-            }
-            
+            if (!seedInput) { alert('请输入种子号'); return; }
             const width = parseInt(document.getElementById('width').value) || 9;
             const height = parseInt(document.getElementById('height').value) || 9;
             const mines = parseInt(document.getElementById('mines').value) || 10;
-            
             game.width = width;
             game.height = height;
             game.minesCount = mines;
-            
             const seed = parseInt(seedInput) || seedInput.hashCode();
             gameData = game.generateGame(seed);
             displayGame();
@@ -987,9 +734,7 @@
 
         function setMode(mode) {
             game.setMode(mode);
-            document.querySelectorAll('.mode-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
 
@@ -1060,15 +805,11 @@
                             cell.textContent = toChineseNumber(value);
                         }
                     } else {
-                        if (game.flaggedPositions.has(key)) {
-                            cell.classList.add('flag');
-                        }
+                        if (game.flaggedPositions.has(key)) cell.classList.add('flag');
                     }
                     
                     if (game.highlightedCells.has(key)) {
                         cell.classList.add('highlight');
-                    } else if (game.highlighted
-
                     } else if (game.highlightedCells.has(key + '-flag')) {
                         cell.classList.add('highlight-flag');
                     }
@@ -1082,14 +823,10 @@
                     
                     if (cellState === 'revealed' && value > 0) {
                         cell.addEventListener('mousedown', (e) => {
-                            if (e.button === 0) {
-                                handleChordStart(x, y);
-                            }
+                            if (e.button === 0) handleChordStart(x, y);
                         });
                         cell.addEventListener('mouseup', (e) => {
-                            if (e.button === 0) {
-                                handleChordEnd(x, y);
-                            }
+                            if (e.button === 0) handleChordEnd(x, y);
                         });
                     }
                     
@@ -1118,3 +855,6 @@
         };
 
         window.onload = startNewGame;
+    </script>
+</body>
+</html>
