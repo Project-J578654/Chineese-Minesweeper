@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -1069,3 +1068,53 @@
                     if (game.highlightedCells.has(key)) {
                         cell.classList.add('highlight');
                     } else if (game.highlighted
+
+                    } else if (game.highlightedCells.has(key + '-flag')) {
+                        cell.classList.add('highlight-flag');
+                    }
+                    
+                    if (game.gameState === 'gameover' && value === -1 && !game.flaggedPositions.has(key)) {
+                        cell.classList.add('revealed', 'mine');
+                        cell.textContent = '雷';
+                    }
+                    
+                    cell.addEventListener('click', () => handleCellClick(x, y));
+                    
+                    if (cellState === 'revealed' && value > 0) {
+                        cell.addEventListener('mousedown', (e) => {
+                            if (e.button === 0) {
+                                handleChordStart(x, y);
+                            }
+                        });
+                        cell.addEventListener('mouseup', (e) => {
+                            if (e.button === 0) {
+                                handleChordEnd(x, y);
+                            }
+                        });
+                    }
+                    
+                    cell.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        game.toggleFlag(x, y);
+                        displayGame();
+                    });
+                    
+                    fieldElement.appendChild(cell);
+                }
+            }
+            
+            gameField.innerHTML = '';
+            gameField.appendChild(fieldElement);
+        }
+
+        String.prototype.hashCode = function() {
+            let hash = 0;
+            for (let i = 0; i < this.length; i++) {
+                const char = this.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash;
+        };
+
+        window.onload = startNewGame;
